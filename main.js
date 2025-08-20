@@ -1,3 +1,64 @@
+// Function to ensure Featured Ventures content is visible
+function ensureFeaturedVenturesVisible() {
+    console.log('Ensuring Featured Ventures content is visible...');
+    
+    const featuredSection = document.getElementById('ventures');
+    if (featuredSection) {
+        console.log('✅ Found ventures section');
+        console.log('Section display style:', window.getComputedStyle(featuredSection).display);
+        console.log('Section visibility:', window.getComputedStyle(featuredSection).visibility);
+        console.log('Section opacity:', window.getComputedStyle(featuredSection).opacity);
+        
+        const featuredItems = featuredSection.querySelectorAll('.featured-item');
+        console.log(`Found ${featuredItems.length} featured items`);
+        
+        featuredItems.forEach((item, index) => {
+            console.log(`Processing featured item ${index + 1}:`, item);
+            
+            // Check current styles
+            const currentOpacity = window.getComputedStyle(item).opacity;
+            const currentTransform = window.getComputedStyle(item).transform;
+            const currentDisplay = window.getComputedStyle(item).display;
+            
+            console.log(`Item ${index + 1} - Current opacity: ${currentOpacity}, transform: ${currentTransform}, display: ${currentDisplay}`);
+            
+            // Make sure the item is visible
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.classList.add('animate');
+            
+            // Verify the changes
+            const newOpacity = window.getComputedStyle(item).opacity;
+            const newTransform = window.getComputedStyle(item).transform;
+            console.log(`Item ${index + 1} - New opacity: ${newOpacity}, transform: ${newTransform}`);
+            
+            console.log(`Made featured item ${index + 1} visible`);
+        });
+    } else {
+        console.error('❌ Could not find ventures section');
+    }
+    
+    // Also ensure all scroll-animate elements are visible as a fallback
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
+    console.log(`Making ${scrollAnimateElements.length} scroll-animate elements visible as fallback`);
+    
+    scrollAnimateElements.forEach((el, index) => {
+        if (index < 10) { // Limit to first 10 to avoid spam
+            const currentOpacity = window.getComputedStyle(el).opacity;
+            const currentTransform = window.getComputedStyle(el).transform;
+            
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            el.classList.add('animate');
+            
+            const newOpacity = window.getComputedStyle(el).opacity;
+            const newTransform = window.getComputedStyle(el).transform;
+            
+            console.log(`Scroll animate element ${index + 1}: opacity ${currentOpacity} → ${newOpacity}, transform ${currentTransform} → ${newTransform}`);
+        }
+    });
+}
+
 // Test if JavaScript is working
 console.log('JavaScript file loaded successfully');
 
@@ -30,12 +91,54 @@ function testBasicFunctionality() {
     } else {
         console.error('❌ Could not find latest-content element');
     }
+    
+    // Test Featured Ventures section
+    console.log('Testing Featured Ventures section...');
+    const featuredSection = document.getElementById('ventures');
+    if (featuredSection) {
+        console.log('✅ Found ventures section:', featuredSection);
+        console.log('Section display style:', window.getComputedStyle(featuredSection).display);
+        console.log('Section is visible:', featuredSection.offsetParent !== null);
+        
+        const featuredItems = featuredSection.querySelectorAll('.featured-item');
+        console.log(`Found ${featuredItems.length} featured items`);
+        
+        featuredItems.forEach((item, index) => {
+            console.log(`Featured item ${index + 1}:`, item);
+            console.log(`Item display style:`, window.getComputedStyle(item).display);
+            console.log(`Item is visible:`, item.offsetParent !== null);
+            console.log(`Item text content:`, item.textContent.substring(0, 100) + '...');
+        });
+    } else {
+        console.error('❌ Could not find ventures section');
+    }
+    
+    // Test scroll-animate elements
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
+    console.log(`Found ${scrollAnimateElements.length} scroll-animate elements`);
+    
+    scrollAnimateElements.forEach((el, index) => {
+        if (index < 5) { // Only log first 5 to avoid spam
+            console.log(`Scroll animate element ${index + 1}:`, el);
+            console.log(`Element classes:`, el.className);
+            console.log(`Element display style:`, window.getComputedStyle(el).display);
+        }
+    });
 }
 
 // Test DOM element selection
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, testing element selection...');
     testBasicFunctionality();
+    
+    // Ensure Featured Ventures content is visible
+    ensureFeaturedVenturesVisible();
+    
+    // Also add a timeout fallback to ensure content is visible
+    setTimeout(() => {
+        console.log('Timeout fallback: Ensuring content is visible...');
+        ensureFeaturedVenturesVisible();
+    }, 2000);
     
     const testElement = document.getElementById('latest-content');
     if (testElement) {
@@ -48,36 +151,54 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Smooth scrolling for navigation links
-document.querySelectorAll(‘a[href^="#"]’).forEach(anchor => {
-anchor.addEventListener(‘click’, function (e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute(‘href’));
-if (target) {
-target.scrollIntoView({
-behavior: ‘smooth’,
-block: ‘start’
-});
-}
-});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
 });
 
 // Scroll-based animations
 const observerOptions = {
-threshold: 0.1,
-rootMargin: ‘0px 0px -50px 0px’
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add(‘animate’);
-}
-});
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log('Adding animate class to:', entry.target);
+            entry.target.classList.add('animate');
+        }
+    });
 }, observerOptions);
 
 // Observe all scroll-animate elements
-document.querySelectorAll(’.scroll-animate’).forEach(el => {
-observer.observe(el);
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Setting up scroll animations...');
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
+    console.log(`Found ${scrollAnimateElements.length} scroll-animate elements to observe`);
+    
+    scrollAnimateElements.forEach((el, index) => {
+        observer.observe(el);
+        console.log(`Observing element ${index + 1}:`, el);
+    });
+    
+    // Also observe elements that might be added dynamically
+    setTimeout(() => {
+        const newScrollElements = document.querySelectorAll('.scroll-animate:not(.observed)');
+        newScrollElements.forEach(el => {
+            el.classList.add('observed');
+            observer.observe(el);
+            console.log('Observing new element:', el);
+        });
+    }, 1000);
 });
 
 // RSS Feed Integration with CORS proxy
