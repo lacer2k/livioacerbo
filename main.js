@@ -57,10 +57,10 @@ async function loadRSSFeeds() {
             },
             {
                 name: 'Limited Liability Solutions',
-                url: 'https://api.rss2json.com/v1/api.json?rss_url=http://limitedliability.solutions/feed',
+                url: 'https://api.rss2json.com/v1/api.json?rss_url=https://limitedliability.solutions/feed',
                 description: 'M&A, Turnaround & Digital Advisory',
                 color: 'var(--netflix-red)',
-                link: 'http://limitedliability.solutions'
+                link: 'https://limitedliability.solutions'
             }
         ];
 
@@ -135,7 +135,7 @@ async function loadRSSFeeds() {
                     <div class="news-date" style="color: var(--netflix-red)">Business</div>
                     <h4>Limited Liability Solutions: M&A Excellence</h4>
                     <p>Boutique management consulting focused on M&A, turnaround strategies, and digital advisory services. Helping businesses navigate complex challenges across Europe.</p>
-                    <a href="http://limitedliability.solutions" target="_blank" style="color: var(--netflix-red); text-decoration: none; font-weight: 600;">Explore Solutions →</a>
+                    <a href="https://limitedliability.solutions" target="_blank" style="color: var(--netflix-red); text-decoration: none; font-weight: 600;">Explore Solutions →</a>
                 </div>
                 
                 <div class="news-item scroll-animate">
