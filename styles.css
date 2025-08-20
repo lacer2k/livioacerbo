@@ -726,12 +726,23 @@ footer p {
 
 /* Scroll animations */
 .scroll-animate {
-    opacity: 0;
-    transform: translateY(40px);
+    opacity: 1; /* Changed from 0 to 1 to ensure content is visible by default */
+    transform: translateY(0); /* Changed from translateY(40px) to translateY(0) */
     transition: all 0.8s ease;
 }
 
 .scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add a subtle entrance animation for elements that should animate in */
+.scroll-animate.entrance {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.scroll-animate.entrance.animate {
     opacity: 1;
     transform: translateY(0);
 }

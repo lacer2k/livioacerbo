@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-content { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-item { padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Test Page</h1>
+    
+    <div class="test-content">
+        <h2>Test Content</h2>
+        <p>This content should be visible.</p>
+    </div>
+    
+    <div class="news-grid" id="latest-content">
+        <div class="news-item">
+            <h3>Static Content</h3>
+            <p>This is static content that should always be visible.</p>
+        </div>
+    </div>
+    
+    <div class="test-content">
+        <h2>After Content</h2>
+        <p>This content comes after the news grid.</p>
+    </div>
+    
+    <script>
+        console.log('Test script loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded in test page');
+            
+            const newsGrid = document.getElementById('latest-content');
+            if (newsGrid) {
+                console.log('✅ Found latest-content element in test page');
+                
+                // Test adding content
+                const newItem = document.createElement('div');
+                newItem.className = 'news-item';
+                newItem.innerHTML = '<h3>Dynamic Content</h3><p>This content was added by JavaScript.</p>';
+                newsGrid.appendChild(newItem);
+                console.log('✅ Added dynamic content');
+            } else {
+                console.error('❌ Could not find latest-content element in test page');
+            }
+        });
+    </script>
+</body>
+</html>
