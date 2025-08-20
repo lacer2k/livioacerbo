@@ -1071,33 +1071,36 @@
                     }
                 ];
 
-                let allArticles = [];
+                // Fetch all feeds in parallel
+                let allArticles = (
+                    await Promise.all(
+                        feeds.map(async (feed) => {
+                            try {
+                                const response = await fetch(feed.url);
+                                const data = await response.json();
 
-                // Fetch all feeds
-                for (const feed of feeds) {
-                    try {
-                        const response = await fetch(feed.url);
-                        const data = await response.json();
-                        
-                        if (data.status === 'ok' && data.items) {
-                            // Process first 3 items from each feed
-                            const articles = data.items.slice(0, 3).map(item => ({
-                                title: item.title,
-                                description: item.description ? 
-                                    item.description.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 
-                                    'Read more about this article...',
-                                link: item.link,
-                                pubDate: new Date(item.pubDate),
-                                source: feed.name,
-                                sourceColor: feed.color,
-                                sourceLink: feed.link
-                            }));
-                            allArticles.push(...articles);
-                        }
-                    } catch (error) {
-                        console.warn(`Failed to load feed from ${feed.name}:`, error);
-                    }
-                }
+                                if (data.status === 'ok' && data.items) {
+                                    // Process first 3 items from each feed
+                                    return data.items.slice(0, 3).map(item => ({
+                                        title: item.title,
+                                        description: item.description ?
+                                            item.description.replace(/<[^>]*>/g, '').substring(0, 150) + '...' :
+                                            'Read more about this article...',
+                                        link: item.link,
+                                        pubDate: new Date(item.pubDate),
+                                        source: feed.name,
+                                        sourceColor: feed.color,
+                                        sourceLink: feed.link
+                                    }));
+                                }
+                            } catch (error) {
+                                console.warn(`Failed to load feed from ${feed.name}:`, error);
+                            }
+
+                            return [];
+                        })
+                    )
+                ).flat();
 
                 // Sort by date (newest first)
                 allArticles.sort((a, b) => b.pubDate - a.pubDate);
