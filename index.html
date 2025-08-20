@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneur & Growth Hacker | Milan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #fafafa;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1a1a1a;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #666;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: #1a1a1a;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 140px 0 80px;
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 300;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        opacity: 0.8;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background: white;
+        color: #667eea;
+        transform: translateY(-2px);
+    }
+
+    /* Featured Section */
+    .featured {
+        padding: 80px 0;
+        background: white;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+    }
+
+    .featured-item {
+        background: #fafafa;
+        border-radius: 20px;
+        padding: 40px;
+        transition: all 0.3s ease;
+        border: 1px solid #e5e5e5;
+    }
+
+    .featured-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .featured-item h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+    }
+
+    .featured-item p {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+
+    .learn-more {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .learn-more:hover {
+        text-decoration: underline;
+    }
+
+    /* Stats Section */
+    .stats {
+        background: #1a1a1a;
+        color: white;
+        padding: 80px 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: center;
+    }
+
+    .stat-item h3 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+        color: #667eea;
+    }
+
+    .stat-item p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+
+    /* News Section */
+    .news {
+        padding: 80px 0;
+        background: #f8f9fa;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .news-item {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        border: 1px solid #e5e5e5;
+        transition: all 0.3s ease;
+    }
+
+    .news-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-date {
+        color: #667eea;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .news-item h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .news-item p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Social Section */
+    .social {
+        padding: 80px 0;
+        background: #1a1a1a;
+        color: white;
+    }
+
+    .social-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .social-platform {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-platform:hover {
+        transform: translateY(-5px);
+        background: rgba(102, 126, 234, 0.1);
+        border-color: #667eea;
+    }
+
+    .social-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .social-platform h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #667eea;
+    }
+
+    .social-platform p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 20px;
+    }
+
+    .social-link {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 10px 20px;
+        background: rgba(102, 126, 234, 0.2);
+        border-radius: 25px;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+        background: #667eea;
+        transform: translateY(-2px);
+    }
+
+    /* Contact Section */
+    .contact {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .contact h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .contact p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+    }
+
+    .contact-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .contact-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+        background: white;
+        color: #667eea;
+    }
+
+    /* Footer */
+    footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    footer p {
+        opacity: 0.7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .featured-grid,
+        .news-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .contact-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">ENTREPRENEUR</a>
+            <ul class="nav-links">
+                <li><a href="#ventures">Ventures</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#social">Social</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+```
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content fade-in">
+            <h1>Ethical Innovation Meets Growth</h1>
+            <p class="hero-subtitle">Entrepreneur • Growth Hacker • Ethical Investor</p>
+            <p class="hero-description">
+                Based in Milan, I leverage cutting-edge technologies including AI, blockchain, and big data to identify, validate, and scale innovative solutions that create both profit and positive impact. With over 20 years in the digital sector, I build ventures that turn cultural values into company value.
+            </p>
+            <a href="#contact" class="cta-button">Let's Build Something Great</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Ventures -->
+<section class="featured" id="ventures">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Ventures</h2>
+            <p class="section-subtitle">Building the future through ethical innovation and strategic growth</p>
+        </div>
+        
+        <div class="featured-grid">
+            <div class="featured-item">
+                <h3>Investor Platform</h3>
+                <p>Leading a C-Suite role in a company that harnesses digital media marketing, artificial intelligence, big data, and blockchain to identify and scale innovative solutions for social and environmental challenges. Our platform transforms how ethical investments are discovered and validated.</p>
+                <a href="#" class="learn-more">Learn more about our impact →</a>
+            </div>
+            
+            <div class="featured-item">
+                <h3>Digital Media Ventures</h3>
+                <p>Founded and managed several successful web and digital media marketing companies, working with innovative technologies and CRM systems. Led large-scale international projects that bridge technology and human connection across European markets.</p>
+                <a href="#" class="learn-more">View portfolio →</a>
+            </div>
+            
+            <div class="featured-item">
+                <h3>Growth Strategy Consulting</h3>
+                <p>Applied growth hacking methodologies and analytical frameworks to help startups and established companies scale sustainably. Specialized in fundraising, investor relations, and M&A strategies that align with ethical business practices.</p>
+                <a href="#" class="learn-more">See case studies →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>20+</h3>
+                <p>Years in Digital Innovation</p>
+            </div>
+            <div class="stat-item">
+                <h3>3</h3>
+                <p>Countries Lived & Worked</p>
+            </div>
+            <div class="stat-item">
+                <h3>∞</h3>
+                <p>Passion for Learning</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Ethical Investment Focus</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Insights -->
+<section class="news" id="insights">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Insights</h2>
+            <p class="section-subtitle">Thoughts on innovation, growth, and ethical business</p>
+        </div>
+        
+        <div class="news-grid" id="latest-content">
+            <!-- Content will be dynamically loaded from RSS feeds -->
+            <div class="news-item">
+                <div class="news-date">Recent</div>
+                <h4>Daily Insights for a Smarter Tomorrow</h4>
+                <p>Stay updated with the latest in technology, innovation, and business insights from GreenGround.it - covering everything from tech trends to digital transformation.</p>
+                <a href="https://greenground.it" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Visit GreenGround →</a>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date">Business</div>
+                <h4>Limited Liability Solutions: M&A Excellence</h4>
+                <p>Boutique management consulting focused on M&A, turnaround strategies, and digital advisory services. Helping businesses navigate complex challenges across Europe.</p>
+                <a href="http://limitedliability.solutions" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Explore Solutions →</a>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date">August 2025</div>
+                <h4>The Future of Ethical AI in Investment Decisions</h4>
+                <p>How artificial intelligence can be leveraged responsibly to identify investment opportunities that create both financial returns and positive social impact...</p>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date">July 2025</div>
+                <h4>Growth Hacking with Purpose: Sustainable Scaling Strategies</h4>
+                <p>Moving beyond traditional growth metrics to build businesses that scale sustainably while maintaining ethical standards and social responsibility...</p>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date">June 2025</div>
+                <h4>Blockchain for Social Good: Real-World Applications</h4>
+                <p>Exploring how blockchain technology can be applied to solve real social and environmental challenges, from supply chain transparency to fair trade...</p>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-date">May 2025</div>
+                <h4>The Milan Startup Ecosystem: Opportunities and Challenges</h4>
+                <p>An insider's perspective on the evolving entrepreneurial landscape in Milan and Northern Italy, with insights for international investors and founders...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Section -->
+<section class="social" id="social">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">Connect & Follow</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Stay connected across all platforms for the latest updates, insights, and conversations</p>
+        </div>
+        
+        <div class="social-grid">
+            <div class="social-platform">
+                <span class="social-icon">📹</span>
+                <h4>YouTube</h4>
+                <p>Video content, tutorials, and insights</p>
+                <a href="https://youtube.com/@LivioAcerbo" target="_blank" class="social-link">Subscribe</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🎵</span>
+                <h4>TikTok</h4>
+                <p>Quick insights and tech trends</p>
+                <a href="https://www.tiktok.com/@greengroundit" target="_blank" class="social-link">Follow</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">📘</span>
+                <h4>Facebook</h4>
+                <p>Community updates and discussions</p>
+                <a href="https://www.facebook.com/greengroundit/" target="_blank" class="social-link">Like Page</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">📸</span>
+                <h4>Instagram</h4>
+                <p>Behind the scenes and daily inspiration</p>
+                <a href="https://www.instagram.com/lacer2k/" target="_blank" class="social-link">Follow</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🎙️</span>
+                <h4>Podcast</h4>
+                <p>In-depth conversations on innovation</p>
+                <a href="https://anchor.fm/livioacerbo" target="_blank" class="social-link">Listen</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">✍️</span>
+                <h4>Medium</h4>
+                <p>Thought leadership articles</p>
+                <a href="https://medium.com/@livioandreaacerbo/" target="_blank" class="social-link">Read</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">💬</span>
+                <h4>Telegram</h4>
+                <p>Real-time news and updates</p>
+                <a href="https://t.me/greengrounditnews" target="_blank" class="social-link">Join</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🤖</span>
+                <h4>Reddit</h4>
+                <p>Community discussions</p>
+                <a href="https://reddit.com/r/greengroundnews" target="_blank" class="social-link">Join</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🎥</span>
+                <h4>Rumble</h4>
+                <p>Alternative video platform</p>
+                <a href="https://rumble.com/c/c-5314480" target="_blank" class="social-link">Watch</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🔊</span>
+                <h4>SoundCloud</h4>
+                <p>Audio content and music</p>
+                <a href="https://soundcloud.com/greenground-955612902" target="_blank" class="social-link">Listen</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🎧</span>
+                <h4>Spotify</h4>
+                <p>Podcast episodes and playlists</p>
+                <a href="https://open.spotify.com/show/5yPPdG3CnnVb2geWrxxu9X?si=zBN3u8mdS02BRPCriAaeag" target="_blank" class="social-link">Follow</a>
+            </div>
+            
+            <div class="social-platform">
+                <span class="social-icon">🎶</span>
+                <h4>Suno</h4>
+                <p>AI-generated music and creativity</p>
+                <a href="https://suno.com/@lacer2k" target="_blank" class="social-link">Explore</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Ready to Create Impact Together?</h2>
+        <p>Let's discuss how we can build ethical, profitable ventures that make a difference</p>
+        <div class="contact-buttons">
+            <a href="mailto:livio@greenground.it" class="contact-btn">Email Me</a>
+            <a href="https://www.linkedin.com/in/livio-acerbo/" target="_blank" class="contact-btn">LinkedIn</a>
+            <a href="https://www.instagram.com/lacer2k/" target="_blank" class="contact-btn">Instagram</a>
+            <a href="https://greenground.it" target="_blank" class="contact-btn">GreenGround</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Entrepreneur Portfolio. Based in Milan, Italy. Building the future ethically.</p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll-based animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections for scroll animations
+    document.querySelectorAll('.featured-item, .news-item, .stat-item, .social-platform').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease';
+        observer.observe(el);
+    });
+
+    // RSS Feed Integration (simplified version for demo)
+    // In production, you'd want to use a proper RSS parser service
+    function loadLatestContent() {
+        // This would normally fetch from your RSS feeds
+        // For now, we'll add some dynamic behavior
+        console.log('RSS feeds would be loaded from:');
+        console.log('- https://greenground.it/feed');
+        console.log('- http://limitedliability.solutions/feed');
+        
+        // Add loading indicator for RSS content
+        const newsGrid = document.getElementById('latest-content');
+        if (newsGrid) {
+            // Add a subtle loading animation
+            newsGrid.style.opacity = '0.8';
+            setTimeout(() => {
+                newsGrid.style.opacity = '1';
+            }, 500);
+        }
+    }
+
+    // Load content when page loads
+    window.addEventListener('load', loadLatestContent);
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+</script>
+```
+
+</body>
+</html>
