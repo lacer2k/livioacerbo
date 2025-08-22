@@ -746,3 +746,76 @@ footer p {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Chat Interface */
+.chat {
+  background: var(--netflix-black);
+  color: var(--netflix-white);
+  padding: 60px 0;
+}
+.chat h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.chat-window {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+.message {
+  display: flex;
+  margin-bottom: 10px;
+}
+.message.user {
+  justify-content: flex-end;
+}
+.message.bot {
+  justify-content: flex-start;
+}
+.message-bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.user .message-bubble {
+  background: var(--netflix-red);
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+.bot .message-bubble {
+  background: #2f2f2f;
+  color: #fff;
+  border-bottom-left-radius: 0;
+}
+.message audio {
+  width: 180px;
+}
+.chat-input-group {
+  display: flex;
+  gap: 10px;
+}
+#chat-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+#send-btn, #record-btn {
+  background: var(--netflix-red);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#record-btn.recording {
+  background: #e67e22;
+}

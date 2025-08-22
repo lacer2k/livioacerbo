@@ -410,3 +410,148 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+/***********************
+ * Telegram-like Chat *
+ ***********************/
+document.addEventListener('DOMContentLoaded', () => {
+  const chatWindow = document.getElementById('chat-window');
+  const chatInput = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('send-btn');
+  const recordBtn = document.getElementById('record-btn');
+
+  if (!chatWindow || !chatInput || !sendBtn || !recordBtn) return; // Chat section not present
+
+  // Helper to append message (text or audio)
+  function appendMessage(sender, elementContent) {
+    const msgEl = document.createElement('div');
+    msgEl.className = `message ${sender}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+
+    if (typeof elementContent === 'string') {
+      bubble.textContent = elementContent;
+    } else {
+      // elementContent is a DOM element (audio)
+      bubble.appendChild(elementContent);
+    }
+
+    msgEl.appendChild(bubble);
+    chatWindow.appendChild(msgEl);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  // Simple bot text response
+  function botReplyText(userText) {
+    const reply = `Echo: ${userText}`;
+    setTimeout(() => appendMessage('bot', reply), 500);
+  }
+
+  // Bot voice reply using SpeechSynthesis API
+  function botReplyVoice(userTranscript) {
+    const utteranceText = `I heard you say: ${userTranscript || 'something'}`;
+
+    // Speak it aloud immediately
+    const utterance = new SpeechSynthesisUtterance(utteranceText);
+    speechSynthesis.speak(utterance);
+
+    // Create a play-again button
+    const playBtn = document.createElement('button');
+    playBtn.textContent = '▶️ Replay';
+    playBtn.style.background = 'transparent';
+    playBtn.style.border = 'none';
+    playBtn.style.color = '#fff';
+    playBtn.style.cursor = 'pointer';
+
+    playBtn.addEventListener('click', () => {
+      const u = new SpeechSynthesisUtterance(utteranceText);
+      speechSynthesis.speak(u);
+    });
+
+    appendMessage('bot', playBtn);
+  }
+
+  // Send text handler
+  function handleSend() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    appendMessage('user', text);
+    chatInput.value = '';
+    botReplyText(text);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSend();
+    }
+  });
+
+  /******** Voice recording ********/
+  let mediaRecorder = null;
+  let audioChunks = [];
+
+  async function startRecording() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+
+      mediaRecorder.addEventListener('dataavailable', (e) => {
+        audioChunks.push(e.data);
+      });
+
+      mediaRecorder.addEventListener('stop', () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audioEl = document.createElement('audio');
+        audioEl.controls = true;
+        audioEl.src = audioUrl;
+
+        appendMessage('user', audioEl);
+
+        // For simplicity, attempt speech recognition if supported
+        if ('webkitSpeechRecognition' in window) {
+          const recognition = new webkitSpeechRecognition();
+          recognition.lang = 'en-US';
+          recognition.interimResults = false;
+          recognition.maxAlternatives = 1;
+          recognition.addEventListener('result', (event) => {
+            const transcript = event.results[0][0].transcript;
+            botReplyVoice(transcript);
+          });
+          recognition.addEventListener('error', () => botReplyVoice(''));
+          // Workaround: feed audio blob? Not supported. Instead just reply without transcript.
+          botReplyVoice('');
+        } else {
+          botReplyVoice('');
+        }
+      });
+
+      mediaRecorder.start();
+      recordBtn.classList.add('recording');
+      recordBtn.textContent = '⏹️';
+    } catch (err) {
+      console.error('Error accessing microphone:', err);
+    }
+  }
+
+  function stopRecording() {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      mediaRecorder = null;
+      recordBtn.classList.remove('recording');
+      recordBtn.textContent = '🎤';
+    }
+  }
+
+  recordBtn.addEventListener('click', () => {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  });
+});
